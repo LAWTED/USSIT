@@ -42,20 +42,10 @@ export default {
     CenterLeft1Chart
   },
   mounted() {
-    this.changeTiming();
+    
   },
   methods: {
-    changeTiming() {
-      setInterval(() => {
-        this.changeNumber();
-      }, 3000);
-    },
-    changeNumber() {
-      this.numberData.forEach((item, index) => {
-        item.number.number[0] += ++index;
-        item.number = { ...item.number };
-      });
-    }
+    
   }
 };
 </script>
@@ -63,11 +53,11 @@ export default {
 <style lang="scss">
 #centerLeft1 {
   padding: 0.2rem;
-  height: 5.125rem;
+  height: auto;
   min-width: 3.75rem;
   border-radius: 0.0625rem;
   .bg-color-black {
-    height: 4.8125rem;
+    height: auto;
     border-radius: 0.125rem;
   }
   .text {

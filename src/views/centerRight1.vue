@@ -54,11 +54,11 @@ export default {
 <style lang="scss">
 #centerRight1 {
   padding: 0.2rem;
-  height: 5.125rem;
+  height: auto;
   min-width: 3.75rem;
   border-radius: 0.0625rem;
   .bg-color-black {
-    height: 4.8125rem;
+    height: auto;
     border-radius: 0.125rem;
   }
   .text {

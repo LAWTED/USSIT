@@ -37,7 +37,7 @@ yarn serve or npm run serve
 ### 文件缩写 :floppy_disk:
 | 缩写              | 中英全称                                                         |
 | :-----------------: | :-------------------------------------------------------------------: |
-| TCP          | Traffic Condition Perception 交通路况感知 |
+| TCP          | Traffic Condition Perception 交通状况感知 |
 | TRF           | Traffic Real-time Forecast 交通实时预测 |
 | TCG  |    TrafficControlGuidance 交通调控引导    |
 | ISP  |   InfrastructurePlanning  基础设施规划    |
