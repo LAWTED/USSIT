@@ -1,25 +1,5 @@
 <template>
-  <div id="blue">
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
-    <h1>PP</h1>
+  <div>
     <h1>PP</h1>
   </div>
 </template>
@@ -31,7 +11,4 @@ export default {
 </script>
 
 <style>
-#blue{
-  background-color: blue;
-}
 </style>

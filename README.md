@@ -18,7 +18,7 @@ UCCSIT项目前端界面
 | views/其余文件       | 界面各个区域组件（按照位置来命名）                                       |
 | assets              | 静态资源目录，放置 logo 与背景图片                                       |
 | assets / style.scss | 通用 CSS 文件，全局项目快捷样式调节                                      |
-| assets / index.scss | Index 界面的 CSS 文件                                                  |
+| assets / index.scss | Index 界面的 CSS 文件s                                                 |
 | components/echart   | 所有 echart 图表（按照位置来命名）                                      |
 | common/...          | 全局封装的 ECharts 和 flexible 插件代码（适配屏幕尺寸，可定制化修改）     |
 
@@ -38,12 +38,12 @@ yarn serve or npm run serve
 | 缩写              | 中英全称                                                         |
 | :-----------------: | :-------------------------------------------------------------------: |
 | TCP          | Traffic Condition Perception 交通状况感知 |
-| TRF           | Traffic Real-time Forecast 交通实时预测 |
+| TRF           | Traffic Real-time Forecasts |
 | TCG  |    TrafficControlGuidance 交通调控引导    |
 | ISP  |   InfrastructurePlanning  基础设施规划    |
-|      |                                           |
-|      |                                           |
-|      |                                           |
+| TCP/RTCA | Real-time road condition awareness 实时路况感知 |
+| TCP/PP | Percision perception 精准感知 |
+| TCP/CTSA | Congestion Time And Space Analysis 拥堵时空分析 |
 |      |                                           |
 |      |                                           |
 

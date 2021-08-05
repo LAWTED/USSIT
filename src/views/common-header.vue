@@ -9,7 +9,7 @@
         />
         <div class="title">
           <span class="title-text fw-b" style="color: white">
-            <router-link to="/index/home" class="routeButton"
+            <router-link to="/" class="routeButton"
               >城市群智能感知系统</router-link
             ></span
           >
@@ -44,8 +44,8 @@
           ></span>
           <span class="text fw-b">
             <router-link to="/TCP/RTCA" class="routeButton">
-              {{tcpTitle}}
-              <el-dropdown @command="handleCommand1">
+              交通状况感知
+              <el-dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
                   <i
                     class="el-icon-caret-bottom"
@@ -64,7 +64,9 @@
                     </router-link>
                   </el-dropdown-item>
                   <el-dropdown-item command="拥堵时空分析">
-                    <span>拥堵时空分析</span> 
+                    <router-link to="/TCP/CTSA">
+                      <span>拥堵时空分析</span>  
+                    </router-link>
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -74,7 +76,7 @@
         <div class="react-right ml-4" style="background-color: #1a5cd7">
           <span class="text fw-b">
             <router-link to="/TRF" class="routeButton">
-              {{trfTitle}}
+              交通实时预测
             </router-link>
           </span>
         </div>
@@ -110,26 +112,15 @@
 export default {
   data() {
     return {
-      tcpTitle: '交通状况感知',
-      trfTitle: '交通实时预测'
     };
   },
   methods: {
-    handleCommand1(command) {
+    handleCommand(command) {
       this.$message({
         message: "切换到 " + command,
         type: "success",
         duration : 2000,
       });
-      this.tcpTitle = command;
-    },
-    handleCommand2(command) {
-      this.$message({
-        message: "切换到 " + command,
-        type: "success",
-        duration : 1000,
-      });
-      this.trfTitle = command;
     },
   },
 };

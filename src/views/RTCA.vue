@@ -1,9 +1,7 @@
 <template>
-  <div id="index">
-    <!-- <dv-full-screen-container class="bg"> -->
+  <div id="tcp">
       <dv-loading v-if="loading">Loading...</dv-loading>
       <div v-else class="host-body">
-
         <el-row>
           <el-col :span="6">
             <div>
@@ -48,7 +46,6 @@
           </el-col>
         </el-row>
       </div>
-    <!-- </dv-full-screen-container> -->
   </div>
 </template>
 
@@ -93,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/index.scss";
+@import "../assets/scss/tcp.scss";
 .routeButton {
   color: white;
 }

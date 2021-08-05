@@ -1,7 +1,8 @@
 <template>
   <div id="index">
     <dv-full-screen-container class="bg">
-      <router-view />
+      <el-button icon="el-icon-menu" circle style="position: fixed;bottom: 60px;right: 50px; z-index: 100;" @click="goBack"></el-button>
+        <router-view />
     </dv-full-screen-container>
   </div>
 </template>
@@ -28,8 +29,8 @@ export default {
       }, 500);
     },
     goBack() {
-        console.log('go back');
-      }
+       this.$router.push('/') 
+    },
   },
 };
 </script>
