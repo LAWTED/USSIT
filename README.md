@@ -38,14 +38,18 @@ yarn serve or npm run serve
 | 缩写              | 中英全称                                                         |
 | :-----------------: | :-------------------------------------------------------------------: |
 | TCP          | Traffic Condition Perception 交通状况感知 |
-| TRF           | Traffic Real-time Forecasts |
-| TCG  |    TrafficControlGuidance 交通调控引导    |
-| ISP  |   InfrastructurePlanning  基础设施规划    |
 | TCP/RTCA | Real-time road condition awareness 实时路况感知 |
 | TCP/PP | Percision perception 精准感知 |
 | TCP/CTSA | Congestion Time And Space Analysis 拥堵时空分析 |
-|      |                                           |
-|      |                                           |
+| TRF           | Traffic Real-time Forecasts 交通实时预测 |
+| TRF/RF | Road forecast 路况预测 |
+| TRF/BTF | Bus traffic forecast 公交流量预测 |
+| TRF/VTP | Vehicle trajectory prediction 车辆轨迹预测 |
+| TCG  |    TrafficControlGuidance 交通调控引导    |
+| TCG/IPG | Intelligent parking guidance 智能停车引导 |
+| TCG/TSO | Traffic signal optimization 交通信号优化 |
+| ISP  |   InfrastructurePlanning  基础设施规划    |
+| ISP/CPP | Charging pile planning 充电桩规划 |
 
 ## 四、更新情况 :memo:
 
