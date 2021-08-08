@@ -55,17 +55,23 @@
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="实时路况感知">
                     <router-link to="/TCP/RTCA">
-                      <span>实时路况感知</span> 
+                      <div>
+                        <span class="pulldown-button">实时路况感知</span>
+                      </div>
                     </router-link>
                   </el-dropdown-item>
                   <el-dropdown-item command="精准感知">
                     <router-link to="/TCP/PP">
-                      <span>精准感知</span>   
+                      <div>
+                        <span class="pulldown-button">精准感知</span>
+                      </div>   
                     </router-link>
                   </el-dropdown-item>
                   <el-dropdown-item command="拥堵时空分析">
                     <router-link to="/TCP/CTSA">
-                      <span>拥堵时空分析</span>  
+                      <div>
+                        <span class="pulldown-button">拥堵时空分析</span>
+                      </div>
                     </router-link>
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -75,8 +81,39 @@
         </div>
         <div class="react-right ml-4" style="background-color: #1a5cd7">
           <span class="text fw-b">
-            <router-link to="/TRF" class="routeButton">
+            <router-link to="/TRF/RF" class="routeButton">
               交通实时预测
+              <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                  <i
+                    class="el-icon-caret-bottom"
+                    style="color: white; font-size: bold"
+                  ></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="路况预测">
+                    <router-link to="/TRF/RF">
+                      <div>
+                        <span class="pulldown-button">路况预测</span>
+                      </div>
+                    </router-link>
+                  </el-dropdown-item>
+                  <el-dropdown-item command="车辆轨迹预测">
+                    <router-link to="/TRF/VTP">
+                      <div>
+                        <span class="pulldown-button">车辆轨迹预测</span>
+                      </div>   
+                    </router-link>
+                  </el-dropdown-item>
+                  <el-dropdown-item command="公交流量预测">
+                    <router-link to="/TRF/BTF">
+                      <div>
+                        <span class="pulldown-button">公交流量预测</span>
+                      </div>
+                    </router-link>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </router-link>
           </span>
         </div>
@@ -85,7 +122,31 @@
         <div class="react-left bg-color-blue mr-3">
           <span class="text fw-b">
             <router-link to="/TCG" class="routeButton">
-              <span>交通调控引导</span>  
+              <span>交通调控引导 </span>
+              <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                  <i
+                    class="el-icon-caret-bottom"
+                    style="color: white; font-size: bold"
+                  ></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="智能停车引导">
+                    <router-link to="/TCG/IPG">
+                      <div>
+                        <span class="pulldown-button">智能停车引导</span>
+                      </div>
+                    </router-link>
+                  </el-dropdown-item>
+                  <el-dropdown-item command="交通信号优化">
+                    <router-link to="/TCG/TSO">
+                      <div>
+                        <span class="pulldown-button">交通信号优化</span>
+                      </div>   
+                    </router-link>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </router-link>
           </span>
         </div>
@@ -101,6 +162,23 @@
             <router-link to="/ISP" class="routeButton">
               基础设施规划
             </router-link>
+            <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                  <i
+                    class="el-icon-caret-bottom"
+                    style="color: white; font-size: bold"
+                  ></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="充电桩规划">
+                    <router-link to="/ISP/CPP">
+                      <div>
+                        <span class="pulldown-button">充电桩规划</span>
+                      </div>   
+                    </router-link>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
           </span>
         </div>
       </div>
@@ -130,5 +208,8 @@ export default {
 @import "../assets/scss/index.scss";
 .routeButton {
   color: white;
+}
+.pulldown-button {
+  color:black
 }
 </style>
