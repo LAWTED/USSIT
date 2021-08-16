@@ -35,60 +35,11 @@
 
 <script>
 import CenterChart from "@/components/echart/center/centerChartRate";
-
+import axios from 'axios'
 export default {
   data () {
     return {
-      titleItem: [
-        {
-          title: "交通拥堵指数",
-          number: {
-            number: [2.12],
-            toFixed: 2,
-            content: "{nt}"
-          }
-        },
-        {
-          title: "平均车速",
-          number: {
-            number: [29.9],
-            toFixed: 1,
-            content: "{nt}"
-          }
-        },
-        {
-          title: "今日过车",
-          number: {
-            number: [123.13],
-            toFixed: 1,
-            content: "{nt}"
-          }
-        },
-        {
-          title: "当前设备在线",
-          number: {
-            number: [1185],
-            toFixed: 0,
-            content: "{nt}"
-          }
-        },
-        {
-          title: "今年成功任务次数",
-          number: {
-            number: [106],
-            toFixed: 1,
-            content: "{nt}"
-          }
-        },
-        {
-          title: "今年达标任务个数",
-          number: {
-            number: [100],
-            toFixed: 1,
-            content: "{nt}"
-          }
-        }
-      ],
+      titleItem: [],
       ranking: {
         data: [
           {
@@ -178,6 +129,21 @@ export default {
     CenterChart
     // centerChart1,
     // centerChart2
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      axios({
+        url:'/api/',
+        type:'json',
+        method:'get'
+      }).then((res) => {
+        console.log(res);
+        this.titleItem = res.data.titleitems;
+      })
+    }
   }
 };
 </script>

@@ -1,51 +1,41 @@
 <template>
   <div id="tcp">
-      <dv-loading v-if="loading">Loading...</dv-loading>
-      <div v-else class="host-body">
-        <el-row>
-          <el-col :span="6">
-            <div>
-              <dv-border-box-12>
-                <centerLeft1 />
-                <div class="number2">
-                  <el-row>
-                    <el-col :span="12">
-                      <!-- <centerRight2 /> -->
-                      <dv-percent-pond
-                        :config= "config1"
-                        style="width: 200px; height: 100px"
-                      />
-                    </el-col>
-                    <el-col :span="12" :offset="0">
-                      <dv-percent-pond
-                        :config= "config2"
-                        style="width: 200px; height: 100px"
-                      />
-                    </el-col>
-                  </el-row>
-                </div>
-                <bottomRight />
-              </dv-border-box-12>
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <div class="amap-wrapper">
-              <el-amap
-                class="amap-box"
-                :vid="'amap-vue'"
-                :mapStyle="'amap://styles/darkblue'"
-              ></el-amap>
-            </div>
-          </el-col>
-          <el-col :span="6">
-            <div>
-              <dv-border-box-12>
-                <centerRight1 />
-              </dv-border-box-12>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
+    <dv-loading v-if="loading">Loading...</dv-loading>
+    <div v-else class="host-body">
+      <el-row>
+        <el-col :span="6">
+          <div>
+            <dv-border-box-12>
+              <centerLeft1 />
+              <div class="number2">
+                <el-row>
+                  <el-col :span="12">
+                    <!-- <centerRight2 /> -->
+                    <dv-percent-pond :config="config1" style="width: 200px; height: 100px" />
+                  </el-col>
+                  <el-col :span="12" :offset="0">
+                    <dv-percent-pond :config="config2" style="width: 200px; height: 100px" />
+                  </el-col>
+                </el-row>
+              </div>
+              <bottomRight />
+            </dv-border-box-12>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="amap-wrapper">
+            <el-amap class="amap-box" :vid="'amap-vue'" :mapStyle="'amap://styles/darkblue'"></el-amap>
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <div>
+            <dv-border-box-12>
+              <centerRight1 />
+            </dv-border-box-12>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
