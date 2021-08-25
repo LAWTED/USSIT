@@ -64,7 +64,7 @@
                     <router-link to="/TCP/PP">
                       <div>
                         <span class="pulldown-button">精准感知</span>
-                      </div>   
+                      </div>
                     </router-link>
                   </el-dropdown-item>
                   <el-dropdown-item command="拥堵时空分析">
@@ -102,7 +102,7 @@
                     <router-link to="/TRF/VTP">
                       <div>
                         <span class="pulldown-button">车辆轨迹预测</span>
-                      </div>   
+                      </div>
                     </router-link>
                   </el-dropdown-item>
                   <el-dropdown-item command="公交流量预测">
@@ -142,7 +142,7 @@
                     <router-link to="/TCG/TSO">
                       <div>
                         <span class="pulldown-button">交通信号优化</span>
-                      </div>   
+                      </div>
                     </router-link>
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -163,22 +163,22 @@
               基础设施规划
             </router-link>
             <el-dropdown @command="handleCommand">
-                <span class="el-dropdown-link">
-                  <i
-                    class="el-icon-caret-bottom"
-                    style="color: white; font-size: bold"
-                  ></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="充电桩规划">
-                    <router-link to="/ISP/CPP">
-                      <div>
-                        <span class="pulldown-button">充电桩规划</span>
-                      </div>   
-                    </router-link>
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+              <span class="el-dropdown-link">
+                <i
+                  class="el-icon-caret-bottom"
+                  style="color: white; font-size: bold"
+                ></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="充电桩规划">
+                  <router-link to="/ISP/CPP">
+                    <div>
+                      <span class="pulldown-button">充电桩规划</span>
+                    </div>
+                  </router-link>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </span>
         </div>
       </div>
@@ -189,15 +189,14 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     handleCommand(command) {
       this.$message({
         message: "切换到 " + command,
         type: "success",
-        duration : 2000,
+        duration: 2000,
       });
     },
   },
@@ -210,6 +209,6 @@ export default {
   color: white;
 }
 .pulldown-button {
-  color:black
+  color: black;
 }
 </style>

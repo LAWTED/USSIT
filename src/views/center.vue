@@ -142,7 +142,13 @@ export default {
       }).then((res) => {
         console.log(res);
         this.titleItem = res.data.titleitems;
+        for (let item of this.titleItem) {
+          let tmp = [];
+          tmp.push(parseFloat(item.number.number));
+          item.number.number = tmp;
+        }
       })
+      
     }
   }
 };
