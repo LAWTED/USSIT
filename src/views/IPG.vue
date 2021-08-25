@@ -69,12 +69,12 @@
           </el-row>
         </el-col>
         <el-col :span="7">
-          <el-table :data="tableData" style="width: 100%" stripe>
-            <el-table-column prop="road" label="道路" width="240">
+          <el-table :data="chart4Data" style="width: 100%" stripe>
+            <el-table-column prop="road_name" label="道路" width="180">
             </el-table-column>
             <el-table-column prop="ratio" label="占用比" width="80">
             </el-table-column>
-            <el-table-column prop="percent" label="占用率">
+            <el-table-column prop="occupancy_rate" label="占用率">
             </el-table-column>
           </el-table>
         </el-col>
@@ -88,6 +88,7 @@
 import chart1 from "@/components/echart/IPG/chart1";
 import chart2 from "@/components/echart/IPG/chart2";
 import chart3 from "@/components/echart/IPG/chart3";
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -127,43 +128,7 @@ export default {
         number: [24],
         content: '{nt}%'
       },
-      tableData: [
-        {
-          road: '文心三路东侧靠右',
-          ratio: '6/7',
-          percent: '0.85'
-        },
-        {
-          road: '文心三路东侧靠右',
-          ratio: '6/7',
-          percent: '0.85'
-        },
-        {
-          road: '文心三路东侧靠右',
-          ratio: '6/7',
-          percent: '0.85'
-        },
-        {
-          road: '文心三路东侧靠右',
-          ratio: '6/7',
-          percent: '0.85'
-        },
-        {
-          road: '文心三路东侧靠右',
-          ratio: '6/7',
-          percent: '0.85'
-        },
-        {
-          road: '文心三路东侧靠右',
-          ratio: '6/7',
-          percent: '0.85'
-        },
-        {
-          road: '文心三路东侧靠右',
-          ratio: '6/7',
-          percent: '0.85'
-        },
-      ]
+      chart4Data: []
     };
   },
   components: {
@@ -173,6 +138,7 @@ export default {
   },
   mounted() {
     this.cancelLoading();
+    this.getChart1();
   },
   methods: {
     cancelLoading() {
@@ -180,6 +146,26 @@ export default {
         this.loading = false;
       }, 500);
     },
+    submitTime() {
+      this.$message({
+        message: "提交啦",
+        type: "success",
+        duration: 2000,
+      });
+    },
+    getChart1() {
+      axios({
+        url:'/api/use_rank/?rank=use&datetime=2018-09-01',
+        type:'json',
+        method:'get'
+      }).then((res) => {
+        console.log(res);
+        this.chart4Data = res.data
+        for(let i of this.chart4Data) {
+          i['ratio'] = `${i.used_count}/${i.capacity}`;
+        }
+      })
+    }
   },
 };
 </script>

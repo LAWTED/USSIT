@@ -108,11 +108,6 @@ export default {
               fontSize: 24,
               fontWeight: "normal"
             },
-            subtext: newData.year + "/" + newData.weekCategory[6],
-            subtextStyle: {
-              color: "#fff",
-              fontSize: 16
-            },
             top: 50,
             left: 80
           },
@@ -138,7 +133,7 @@ export default {
               color: "rgba(255,255,255,.5)",
               fontSize: 14
             },
-            max: newData.maxData,
+            max: 0.5,
             splitNumber: 4,
 
             axisLine: {
@@ -173,7 +168,7 @@ export default {
               lineStyle: {
                 normal: {
                   color: this.colorList.linearBtoG,
-                  width: 3
+                  width: 2
                 }
               },
               areaStyle: {
@@ -183,26 +178,6 @@ export default {
               },
               data: newData.weekLineData,
               lineSmooth: true,
-              markLine: {
-                silent: true,
-                data: [
-                  {
-                    type: "average",
-                    name: "平均值"
-                  }
-                ],
-                precision: 0,
-                label: {
-                  normal: {
-                    formatter: "平均值: \n {c}"
-                  }
-                },
-                lineStyle: {
-                  normal: {
-                    color: "rgba(248,211,81,.7)"
-                  }
-                }
-              },
               tooltip: {
                 position: "top",
                 formatter: "{c} m",
@@ -220,9 +195,9 @@ export default {
                   opacity: 0
                 }
               },
-              silent: true,
+              silent: false,
               barWidth: "50%",
-              data: newData.weekMaxData,
+              data: 0.5,
               animation: false
             }
           ]
