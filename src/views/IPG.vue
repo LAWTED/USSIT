@@ -77,11 +77,17 @@
               </el-table-column>
               <el-table-column prop="direct" label="方向" width="60">
               </el-table-column>
-              <el-table-column prop="ratio" label="占用比" width="60" >
+              <el-table-column prop="ratio" label="占用比" width="60">
               </el-table-column>
               <el-table-column prop="occupancy_rate" label="占用率" sortable>
               </el-table-column>
             </el-table>
+          </dv-border-box-12>
+          <dv-border-box-12>
+            <div class="titleright">
+              <h1>总体使用情况</h1>
+            </div>
+            <chart5 :pieData="pieData"></chart5>
           </dv-border-box-12>
         </el-col>
       </el-row>
@@ -92,6 +98,7 @@
 
 <script>
 import chart1 from "@/components/echart/IPG/chart1";
+import chart5 from "@/components/echart/IPG/chart5";
 // import chart2 from "@/components/echart/IPG/chart2";
 // import chart3 from "@/components/echart/IPG/chart3";
 // import axios from 'axios'
@@ -166,11 +173,13 @@ export default {
         content: '{nt}'
       },
       avg_occupancy: [20, 30, 40, 20, 40, 30],
-      chart4Data: []
+      chart4Data: [],
+      pieData: []
     };
   },
   components: {
     chart1: chart1,
+    chart5: chart5,
     // chart2: chart2,
     // chart3: chart3,
   },
@@ -241,6 +250,26 @@ export default {
     parseRes(newres) {
       this.avg_occupancy = [...this.avg_occupancy, parseInt(newres.avg_occupancy * 100)]
       let nowocc = newres.origin_occupancy
+      let nowoccrate = newres.block_occupancy
+      let free = 0
+      let saturated = 0
+      let balance = 0
+      for (let item of nowoccrate) {
+        item = parseFloat(item)
+        if (item < 0.2) {
+          free += 1
+        } else if (item > 0.8) {
+          saturated += 1
+        } else {
+          balance += 1
+        }
+      }
+      this.pieData = [
+        { value: free, name: '空闲' },
+        { value: saturated, name: '饱和' },
+        { value: balance, name: '平衡' }
+      ]
+      console.log(this.pieData)
       this.configNowPark.number = [newres.sum]
       for (let i in nowocc) {
         let tmpdata = {
@@ -272,7 +301,7 @@ export default {
 .amap-wrapper {
   /* border: 3px solid rgb(56,213,187); */
   width: 100%;
-  height: 750px;
+  height: 650px;
 }
 .dv-border-box-12 {
   padding: 6px;
