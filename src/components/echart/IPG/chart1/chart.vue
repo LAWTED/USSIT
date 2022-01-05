@@ -71,7 +71,7 @@ export default {
           ],
           series: [
             {
-              name: "贯通率",
+              name: "平均占用率",
               type: "line",
               smooth: true,
               showAllSymbol: true,

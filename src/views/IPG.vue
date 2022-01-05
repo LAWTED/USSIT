@@ -8,7 +8,7 @@
             <el-row :col-count="24">
               <el-col :span="8">
                 <span class="demonstration"></span>
-                <el-date-picker v-model="datetime" type="datetime" placeholder="选择日期时间" align="right" :picker-options="pickerOptions">
+                <el-date-picker v-model="datetime" type="datetime" placeholder="选择日期时间" align="right" :picker-options="pickerOptions" value-format="timestamp">
                 </el-date-picker>
               </el-col>
               <el-col :span="4" :offset="12">
@@ -101,7 +101,7 @@ import chart1 from "@/components/echart/IPG/chart1";
 import chart5 from "@/components/echart/IPG/chart5";
 // import chart2 from "@/components/echart/IPG/chart2";
 // import chart3 from "@/components/echart/IPG/chart3";
-// import axios from 'axios'
+import axios from 'axios'
 import roadmap from '@/assets/roadmap.json'
 export default {
   data() {
@@ -197,24 +197,25 @@ export default {
       }, 500);
     },
     submitTime() {
+      console.log(this.datetime)
       this.$message({
         message: "提交啦",
         type: "success",
         duration: 2000,
       });
     },
-    getChart1() {
-      // axios({
-      //   url: '/api/use_rank/?rank=use&datetime=2018-09-01',
-      //   type: 'json',
-      //   method: 'get'
-      // }).then((res) => {
-      //   console.log(res);
-      //   this.chart4Data = res.data
-      //   for (let i of this.chart4Data) {
-      //     i['ratio'] = `${i.used_count}/${i.capacity}`;
-      //   }
-      // })
+    async getChart1() {
+      let res = await axios({
+        url: 'http://10.112.172.14:7071/kylin/api/query',
+        type: 'json',
+        method: 'post',
+        data: { "sql": "select * from park_show_data;", "project": "park_show_statistic" },
+        auth: {
+          username: 'ADMIN',
+          password: 'KYLIN'
+        }
+      })
+      res = res.data.results
       let newres = {
         "origin_occupancy": [
           8, 42, 9, 42, 6, 9, 17, 7, 1, 2, 4, 3, 6, 13, 38, 20, 25, 28, 1, 28, 10,
