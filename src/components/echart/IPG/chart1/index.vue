@@ -6,48 +6,33 @@
 
 <script>
 import Chart from './chart.vue'
-import axios from 'axios'
 export default {
+  props: {
+    avg_occupancy: Array
+  },
   data () {
     return {
-      drawTiming: null,
       cdata: {
-        weekCategory: [],
-        weekLineData: [],
-      },
-
-    }
+        rateData: this.avg_occupancy,
+        category: ['Mon', 'Tue','Wen' ,'Thr' ,'Fri','Sat','Sun']
+      }
+    };
   },
   components: {
     Chart,
   },
   mounted () {
-    this.drawTimingFn();
-  },
-  beforeDestroy () {
-    clearInterval(this.drawTiming);
+    // this.setData();
   },
   methods: {
-    drawTimingFn () {
-      this.getChart1();
-      this.drawTiming = setInterval(() => {
-        this.getChart1();
-      }, 6000);
-    },
-    getChart1() {
-      axios({
-        url:'api/get_aggregate_rates_data/?datetime=2018-09-01&data_scale=week',
-        type:'json',
-        method:'get'
-      }).then((res) => {
-
-        this.chart1Data = res.data.aggregate_rate;
-        console.log(this.chart1Data)
-        this.cdata.weekCategory = this.chart1Data[0];
-        this.cdata.weekLineData = this.chart1Data[1];
-      })
-    }
-  },
+    // 根据自己的业务情况修改
+    // setData () {
+    //   for (let i = 0; i < this.cdata.barData.length -1; i++) {
+    //     let rate = this.cdata.barData[i] / this.cdata.lineData[i];
+    //     this.cdata.rateData.push(rate.toFixed(2));
+    //   }
+    // },
+  }
 };
 </script>
 

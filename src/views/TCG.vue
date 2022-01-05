@@ -1,10 +1,5 @@
 <template>
-  <div id="index">
-    <dv-full-screen-container class="bg">
-      <el-button icon="el-icon-menu" circle style="position: fixed;bottom: 60px;right: 50px; z-index: 100;" @click="goBack"></el-button>
-        <router-view />
-    </dv-full-screen-container>
-  </div>
+  <router-view />
 </template>
 
 <script>
@@ -29,12 +24,11 @@ export default {
       }, 500);
     },
     goBack() {
-       this.$router.push('/') 
+      this.$router.push('/')
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-@import "../assets/scss/index.scss";
+<style scoped>
 </style>

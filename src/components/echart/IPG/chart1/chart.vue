@@ -1,9 +1,9 @@
 <template>
   <div>
+    <!-- 南山区平均占用率 -->
     <Echart
       :options="options"
-      id="centreLeft1Chart"
-      height="3.8rem"
+      height="3.5rem"
       width="100%"
     ></Echart>
   </div>
@@ -15,77 +15,6 @@ export default {
   data () {
     return {
       options: {},
-      // 定义颜色
-      colorList: {
-        linearYtoG: {
-          type: "linear",
-          x: 0,
-          y: 0,
-          x2: 1,
-          y2: 1,
-          colorStops: [
-            {
-              offset: 0,
-              color: "#f5b44d"
-            },
-            {
-              offset: 1,
-              color: "#28f8de"
-            }
-          ]
-        },
-        linearGtoB: {
-          type: "linear",
-          x: 0,
-          y: 0,
-          x2: 1,
-          y2: 0,
-          colorStops: [
-            {
-              offset: 0,
-              color: "#43dfa2"
-            },
-            {
-              offset: 1,
-              color: "#28f8de"
-            }
-          ]
-        },
-        linearBtoG: {
-          type: "linear",
-          x: 0,
-          y: 0,
-          x2: 1,
-          y2: 0,
-          colorStops: [
-            {
-              offset: 0,
-              color: "#1c98e8"
-            },
-            {
-              offset: 1,
-              color: "#28f8de"
-            }
-          ]
-        },
-        areaBtoG: {
-          type: "linear",
-          x: 0,
-          y: 0,
-          x2: 0,
-          y2: 1,
-          colorStops: [
-            {
-              offset: 0,
-              color: "rgba(35,184,210,.2)"
-            },
-            {
-              offset: 1,
-              color: "rgba(35,184,210,0)"
-            }
-          ]
-        }
-      }
     };
   },
   components: {
@@ -103,109 +32,99 @@ export default {
         this.options = {
           title: {
             text: "",
-            textStyle: {
-              color: "#D3D6DD",
-              fontSize: 24,
-              fontWeight: "normal"
-            },
-            top: 50,
-            left: 80
           },
           tooltip: {
-            trigger: "item"
+            trigger: "axis",
+            backgroundColor: "rgba(255,255,255,0.1)",
+            axisPointer: {
+              type: "shadow",
+              label: {
+                show: true,
+                backgroundColor: "#7B7DDC"
+              }
+            }
           },
           xAxis: {
-            type: "category",
-            position: "bottom",
-            axisLine: true,
-            axisLabel: {
-              color: "rgba(255,255,255,.8)",
-              fontSize: 12
-            },
-            data: newData.weekCategory
-          },
-          // 下方Y轴
-          yAxis: {
-            name: "工单",
-            nameLocation: "end",
-            nameGap: 24,
-            nameTextStyle: {
-              color: "rgba(255,255,255,.5)",
-              fontSize: 14
-            },
-            max: 0.5,
-            splitNumber: 4,
-
+            data: newData.category,
             axisLine: {
               lineStyle: {
-                opacity: 0
+                color: "#B4B4B4"
               }
             },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: "#fff",
-                opacity: 0.1
-              }
-            },
-            axisLabel: {
-              color: "rgba(255,255,255,.8)",
-              fontSize: 12
+            axisTick: {
+              show: false
             }
           },
+          yAxis: [
+            {
+              splitLine: { show: false },
+              axisLine: {
+                lineStyle: {
+                  color: "#B4B4B4"
+                }
+              },
+
+              axisLabel: {
+                formatter: "{value} "
+              }
+            }
+          ],
           series: [
             {
-              name: "",
+              name: "贯通率",
               type: "line",
               smooth: true,
+              showAllSymbol: true,
               symbol: "emptyCircle",
               symbolSize: 8,
+              yAxisIndex: 0,
               itemStyle: {
                 normal: {
-                  color: "#fff"
+                  color: "#F02FC2"
                 }
               },
-              lineStyle: {
-                normal: {
-                  color: this.colorList.linearBtoG,
-                  width: 2
-                }
-              },
-              areaStyle: {
-                normal: {
-                  color: this.colorList.areaBtoG
-                }
-              },
-              data: newData.weekLineData,
-              lineSmooth: true,
-              tooltip: {
-                position: "top",
-                formatter: "{c} m",
-                backgroundColor: "rgba(28,152,232,.2)",
-                padding: 6
-              }
-            },
-            {
-              name: "占位背景",
-              type: "bar",
-              itemStyle: {
-                normal: {
-                  show: true,
-                  color: "#000",
-                  opacity: 0
-                }
-              },
-              silent: false,
-              barWidth: "50%",
-              data: 0.5,
-              animation: false
+              data: newData.rateData
             }
+            // },
+            // {
+            //   name: "已贯通",
+            //   type: "bar",
+            //   barWidth: 10,
+            //   itemStyle: {
+            //     normal: {
+            //       barBorderRadius: 5,
+            //       color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            //         { offset: 0, color: "#956FD4" },
+            //         { offset: 1, color: "#3EACE5" }
+            //       ])
+            //     }
+            //   },
+            //   data: newData.barData
+            // },
+            // {
+            //   name: "计划贯通",
+            //   type: "bar",
+            //   barGap: "-100%",
+            //   barWidth: 10,
+            //   itemStyle: {
+            //     normal: {
+            //       barBorderRadius: 5,
+            //       color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            //         { offset: 0, color: "rgba(156,107,211,0.8)" },
+            //         { offset: 0.2, color: "rgba(156,107,211,0.5)" },
+            //         { offset: 1, color: "rgba(156,107,211,0.2)" }
+            //       ])
+            //     }
+            //   },
+            //   z: -12,
+            //   data: newData.lineData
+            // }
           ]
         }
       },
       immediate: true,
       deep: true
-    }
-  }
-};
+    },
+  },
+}
 </script>

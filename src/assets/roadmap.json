@@ -1,0 +1,686 @@
+[
+  {
+    "index": "0",
+    "road": "中心路(后海湾段)",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.947657",
+    "latitude": "22.509065",
+    "total": "17"
+  },
+  {
+    "index": "1",
+    "road": "中心路(后海湾段)",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.947657",
+    "latitude": "22.509065",
+    "total": "49"
+  },
+  {
+    "index": "2",
+    "road": "创业路(南油段)",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.915701",
+    "latitude": "22.525154",
+    "total": "17"
+  },
+  {
+    "index": "3",
+    "road": "创业路(南油段)",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.915701",
+    "latitude": "22.525154",
+    "total": "55"
+  },
+  {
+    "index": "4",
+    "road": "创业路(后海湾段)",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.94822",
+    "latitude": "22.518481",
+    "total": "10"
+  },
+  {
+    "index": "5",
+    "road": "创业路(后海湾段)",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.94822",
+    "latitude": "22.518481",
+    "total": "9"
+  },
+  {
+    "index": "6",
+    "road": "创业路辅道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.933997",
+    "latitude": "22.521671",
+    "total": "24"
+  },
+  {
+    "index": "7",
+    "road": "创业路辅道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.933997",
+    "latitude": "22.521671",
+    "total": "13"
+  },
+  {
+    "index": "8",
+    "road": "创业路辅道",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.933997",
+    "latitude": "22.521671",
+    "total": "1"
+  },
+  {
+    "index": "9",
+    "road": "华明路",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.933475",
+    "latitude": "22.513464",
+    "total": "4"
+  },
+  {
+    "index": "10",
+    "road": "南头街",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.921489",
+    "latitude": "22.542571",
+    "total": "14"
+  },
+  {
+    "index": "11",
+    "road": "南头街",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.921489",
+    "latitude": "22.542571",
+    "total": "7"
+  },
+  {
+    "index": "12",
+    "road": "南新路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.91975",
+    "latitude": "22.517717",
+    "total": "8"
+  },
+  {
+    "index": "13",
+    "road": "南新路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.91975",
+    "latitude": "22.517717",
+    "total": "15"
+  },
+  {
+    "index": "14",
+    "road": "后海大道辅道(后海段)",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.939075",
+    "latitude": "22.510614",
+    "total": "48"
+  },
+  {
+    "index": "15",
+    "road": "后海大道辅道(后海段)",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.939075",
+    "latitude": "22.510614",
+    "total": "33"
+  },
+  {
+    "index": "16",
+    "road": "后海大道辅道(蛇口北段)",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.941676",
+    "latitude": "22.530704",
+    "total": "28"
+  },
+  {
+    "index": "17",
+    "road": "后海大道辅道(蛇口北段)",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.941676",
+    "latitude": "22.530704",
+    "total": "31"
+  },
+  {
+    "index": "18",
+    "road": "四海路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.932916",
+    "latitude": "22.510441",
+    "total": "1"
+  },
+  {
+    "index": "19",
+    "road": "四海路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.932916",
+    "latitude": "22.510441",
+    "total": "55"
+  },
+  {
+    "index": "20",
+    "road": "学府路(前海段)",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.919806",
+    "latitude": "22.534088",
+    "total": "13"
+  },
+  {
+    "index": "21",
+    "road": "工业九路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.930613",
+    "latitude": "22.508344",
+    "total": "51"
+  },
+  {
+    "index": "22",
+    "road": "常兴路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.928522",
+    "latitude": "22.543616",
+    "total": "30"
+  },
+  {
+    "index": "23",
+    "road": "常兴路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.928522",
+    "latitude": "22.543616",
+    "total": "36"
+  },
+  {
+    "index": "24",
+    "road": "文心一路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.936272",
+    "latitude": "22.524663",
+    "total": "13"
+  },
+  {
+    "index": "25",
+    "road": "文心三路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.94118",
+    "latitude": "22.524229",
+    "total": "7"
+  },
+  {
+    "index": "26",
+    "road": "文心三路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.94118",
+    "latitude": "22.524229",
+    "total": "5"
+  },
+  {
+    "index": "27",
+    "road": "文心二路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.937374",
+    "latitude": "22.525269",
+    "total": "17"
+  },
+  {
+    "index": "28",
+    "road": "文心二路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.937374",
+    "latitude": "22.525269",
+    "total": "13"
+  },
+  {
+    "index": "29",
+    "road": "文心五路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.943213",
+    "latitude": "22.522191",
+    "total": "3"
+  },
+  {
+    "index": "30",
+    "road": "文心五路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.943213",
+    "latitude": "22.522191",
+    "total": "11"
+  },
+  {
+    "index": "31",
+    "road": "文心六路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.94503",
+    "latitude": "22.522916",
+    "total": "21"
+  },
+  {
+    "index": "32",
+    "road": "文心六路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.94503",
+    "latitude": "22.522916",
+    "total": "22"
+  },
+  {
+    "index": "33",
+    "road": "文心四路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.942471",
+    "latitude": "22.523304",
+    "total": "6"
+  },
+  {
+    "index": "34",
+    "road": "文心四路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.942471",
+    "latitude": "22.523304",
+    "total": "4"
+  },
+  {
+    "index": "35",
+    "road": "海德一道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.94165",
+    "latitude": "22.521807",
+    "total": "27"
+  },
+  {
+    "index": "36",
+    "road": "海德一道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.94165",
+    "latitude": "22.521807",
+    "total": "24"
+  },
+  {
+    "index": "37",
+    "road": "海德一道(后海湾段)",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.939057",
+    "latitude": "22.522691",
+    "total": "13"
+  },
+  {
+    "index": "38",
+    "road": "海德一道(后海湾段)",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.939057",
+    "latitude": "22.522691",
+    "total": "14"
+  },
+  {
+    "index": "39",
+    "road": "海德三道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.939556",
+    "latitude": "22.525517",
+    "total": "19"
+  },
+  {
+    "index": "40",
+    "road": "海德三道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.939556",
+    "latitude": "22.525517",
+    "total": "16"
+  },
+  {
+    "index": "41",
+    "road": "海德二道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.945129",
+    "latitude": "22.52325",
+    "total": "19"
+  },
+  {
+    "index": "42",
+    "road": "海德二道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.945129",
+    "latitude": "22.52325",
+    "total": "17"
+  },
+  {
+    "index": "43",
+    "road": "海德二道（南油段）",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.925929",
+    "latitude": "22.527841",
+    "total": "26"
+  },
+  {
+    "index": "44",
+    "road": "海月路(东段)",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.941691",
+    "latitude": "22.506345",
+    "total": "19"
+  },
+  {
+    "index": "45",
+    "road": "登良路",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.93258",
+    "latitude": "22.516243",
+    "total": "18"
+  },
+  {
+    "index": "46",
+    "road": "登良路",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.93258",
+    "latitude": "22.516243",
+    "total": "12"
+  },
+  {
+    "index": "47",
+    "road": "科技南一路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.952007",
+    "latitude": "22.544188",
+    "total": "27"
+  },
+  {
+    "index": "48",
+    "road": "科技南一路",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.952007",
+    "latitude": "22.544188",
+    "total": "12"
+  },
+  {
+    "index": "49",
+    "road": "科技南一路",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.952007",
+    "latitude": "22.544188",
+    "total": "39"
+  },
+  {
+    "index": "50",
+    "road": "科技南一路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.952007",
+    "latitude": "22.544188",
+    "total": "21"
+  },
+  {
+    "index": "51",
+    "road": "科技南十二路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.962177",
+    "latitude": "22.541352",
+    "total": "10"
+  },
+  {
+    "index": "52",
+    "road": "科技南十路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.960384",
+    "latitude": "22.545851",
+    "total": "17"
+  },
+  {
+    "index": "53",
+    "road": "科技南十路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.960384",
+    "latitude": "22.545851",
+    "total": "12"
+  },
+  {
+    "index": "54",
+    "road": "科技南路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.956302",
+    "latitude": "22.546269",
+    "total": "43"
+  },
+  {
+    "index": "55",
+    "road": "科技南路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.956302",
+    "latitude": "22.546269",
+    "total": "45"
+  },
+  {
+    "index": "56",
+    "road": "荔园路(蛇口东段)",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.938447",
+    "latitude": "22.50364",
+    "total": "45"
+  },
+  {
+    "index": "57",
+    "road": "荔园路(蛇口东段)",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.938447",
+    "latitude": "22.50364",
+    "total": "3"
+  },
+  {
+    "index": "58",
+    "road": "金世纪路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.553371",
+    "latitude": "22.29707",
+    "total": "19"
+  },
+  {
+    "index": "59",
+    "road": "高新南七道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.948268",
+    "latitude": "22.538841",
+    "total": "25"
+  },
+  {
+    "index": "60",
+    "road": "高新南七道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.948268",
+    "latitude": "22.538841",
+    "total": "17"
+  },
+  {
+    "index": "61",
+    "road": "高新南三道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.960522",
+    "latitude": "22.54333",
+    "total": "23"
+  },
+  {
+    "index": "62",
+    "road": "高新南九道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.961159",
+    "latitude": "22.535477",
+    "total": "7"
+  },
+  {
+    "index": "63",
+    "road": "高新南九道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.961159",
+    "latitude": "22.535477",
+    "total": "20"
+  },
+  {
+    "index": "64",
+    "road": "高新南五道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.953524",
+    "latitude": "22.540997",
+    "total": "19"
+  },
+  {
+    "index": "65",
+    "road": "高新南十一道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.960791",
+    "latitude": "22.530275",
+    "total": "30"
+  },
+  {
+    "index": "66",
+    "road": "高新南十一道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.960791",
+    "latitude": "22.530275",
+    "total": "30"
+  },
+  {
+    "index": "67",
+    "road": "高新南十道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.952375",
+    "latitude": "22.532615",
+    "total": "30"
+  },
+  {
+    "index": "68",
+    "road": "高新南十道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.952375",
+    "latitude": "22.532615",
+    "total": "28"
+  },
+  {
+    "index": "69",
+    "road": "高新南四道",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.963324",
+    "latitude": "22.540668",
+    "total": "13"
+  },
+  {
+    "index": "70",
+    "road": "高新南四道",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.963324",
+    "latitude": "22.540668",
+    "total": "13"
+  },
+  {
+    "index": "71",
+    "road": "高新南环路",
+    "pos": "靠右",
+    "direct": "东侧",
+    "longitude": "113.954392",
+    "latitude": "22.535928",
+    "total": "69"
+  },
+  {
+    "index": "72",
+    "road": "高新南环路",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.954392",
+    "latitude": "22.535928",
+    "total": "44"
+  },
+  {
+    "index": "73",
+    "road": "高新南环路",
+    "pos": "靠左",
+    "direct": "北侧",
+    "longitude": "113.954392",
+    "latitude": "22.535928",
+    "total": "47"
+  },
+  {
+    "index": "74",
+    "road": "高新南环路",
+    "pos": "靠左",
+    "direct": "西侧",
+    "longitude": "113.954392",
+    "latitude": "22.535928",
+    "total": "80"
+  },
+  {
+    "index": "75",
+    "road": "龙城路",
+    "pos": "靠右",
+    "direct": "南侧",
+    "longitude": "113.93332",
+    "latitude": "22.518527",
+    "total": "32"
+  }
+]

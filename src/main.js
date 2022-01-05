@@ -5,7 +5,8 @@ import store from './store';
 import dataV from '@jiaminghi/data-view';
 import VueAMap from 'vue-amap';
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+// import 'element-ui/lib/theme-chalk/index.css';
+import 'element-theme-dark';
 Vue.use(dataV);
 // 按需引入vue-awesome图标
 import Icon from 'vue-awesome/components/Icon';

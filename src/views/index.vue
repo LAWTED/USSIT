@@ -1,6 +1,5 @@
 <template>
   <div id="index">
-    <dv-full-screen-container class="bg">
       <dv-loading v-if="loading">Loading...</dv-loading>
       <div v-else class="host-body">
         <common-header></common-header>
@@ -44,7 +43,6 @@
           </div>
         </div>
       </div>
-    </dv-full-screen-container>
   </div>
 </template>
 
