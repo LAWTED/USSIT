@@ -25,7 +25,6 @@ export default {
   },
   mounted() {
     // this.setData();
-    console.log(this.block_data)
   },
   methods: {
     // 根据自己的业务情况修改

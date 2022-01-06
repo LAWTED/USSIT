@@ -18,7 +18,7 @@
           </div>
           <dv-border-box-12>
             <div class="titleright">
-              <h1>南山区平均占用率</h1>
+              <h1>路况占用率</h1>
             </div>
             <chart1 :key="avg_occupancy.length" :avg_occupancy="avg_occupancy" :xtime="xtime"></chart1>
           </dv-border-box-12>
@@ -26,47 +26,10 @@
             <div class="titleright">
               <h1>{{hasClick ? clickItem.content : '区块占用率'}}</h1>
             </div>
-            <chart2 :key="hasClick ? clickItem.roadinfo.index : blockData[0].length" :block_data="hasClick ? blockData[clickItem.roadinfo.index] : blockData[0]"  :xtime="xtime" ></chart2>
+            <chart2 :key="hasClick ? clickItem.roadinfo.index : blockData[0].length" :block_data="hasClick ? blockData[clickItem.roadinfo.index] : blockData[0]" :xtime="xtime"></chart2>
           </dv-border-box-12>
-          <!-- <dv-border-box-12>
-            <chart3></chart3>
-          </dv-border-box-12> -->
         </el-col>
         <el-col :span="10">
-          <el-row :gutter="20">
-            <el-col :span="8" :offset="0">
-              <div>
-                <h2 style="color:#fff">总区块数</h2>
-              </div>
-              <dv-digital-flop :config="configBlock" style="width:100px;height:50px;" />
-            </el-col>
-            <el-col :span="8" :offset="0">
-              <div>
-                <h2 style="color:#fff">总泊位数</h2>
-              </div>
-              <el-row :gutter="20" style="display:flex;align-items:center">
-                <el-col :span="14" :offset="0">
-                  <dv-digital-flop :config="configPark" style="width:100px;height:50px;" />
-                </el-col>
-                <el-col :span="10" :offset="0">
-                  <div>
-                    <el-row :gutter="20">
-                      <h3 style="color:red">占用{{avg_occupancy[avg_occupancy.length-1]}}%</h3>
-                    </el-row>
-                    <el-row :gutter="20">
-                      <h3 style="color:green">空闲:{{100-avg_occupancy[avg_occupancy.length-1]}}%</h3>
-                    </el-row>
-                  </div>
-                </el-col>
-              </el-row>
-            </el-col>
-            <el-col :span="8" :offset="0">
-              <div>
-                <h2 style="color:#fff">占用车位数</h2>
-              </div>
-              <dv-digital-flop :key="configNowPark.number[0]" :config="configNowPark" style="width:100px;height:50px;" />
-            </el-col>
-          </el-row>
           <el-row :gutter="20">
             <el-card class="box-card" v-if="JSON.stringify(this.clickItem) !== '{}'">
               <div slot="header" class="clearfix titlecard">
@@ -81,7 +44,7 @@
               </div>
             </el-card>
             <div class="amap-wrapper">
-              <el-amap class="amap-box" :vid="'amap-vue'" :mapStyle="'amap://styles/darkblue'" :zoom="16" :zooms="[3,20]" :center="[113.935197,22.51659]">
+              <el-amap class="amap-box" :vid="'amap-vue'" :mapStyle="'amap://styles/darkblue'" :zoom="16" :zooms="[3,20]" :center="[117.11399303212,36.17872808269]">
                 <el-amap-marker v-for="(marker,index) in markers" :key="index" :position="marker.position" clickable @click="handleClick(marker)" :title="marker.content" :animation="marker.animation || ''"></el-amap-marker>
                 <!-- <el-amap-marker :position="marker"></el-amap-marker> -->
                 <!-- animation="AMAP_ANIMATION_BOUNCE" -->
@@ -95,10 +58,8 @@
             <div class="titleright">
               <h1>实时流量预测排行</h1>
             </div>
-            <el-table  :data="chart4Data" style="width: 100%" stripe height="400" @row-click="rowClick">
-              <el-table-column prop="road_name" label="道路" width="180">
-              </el-table-column>
-              <el-table-column prop="direct" label="方向" width="60">
+            <el-table :data="chart4Data" style="width: 100%" stripe height="400" @row-click="rowClick">
+              <el-table-column prop="camera" label="路口" width="180">
               </el-table-column>
               <el-table-column prop="ratio" label="占用比" width="60">
               </el-table-column>
@@ -110,7 +71,8 @@
             <div class="titleright">
               <h1>总体使用情况</h1>
             </div>
-            <chart5 :pieData="pieData" :key="xtime.length"></chart5>
+            <!-- <chart5 :pieData="pieData" :key="xtime.length"></chart5> -->
+            <dv-active-ring-chart :config="fakeconfig1" style="width:300px;height:300px" />
           </dv-border-box-12>
         </el-col>
       </el-row>
@@ -121,12 +83,12 @@
 
 <script>
 import chart1 from "@/components/echart/IPG/chart1";
-import chart5 from "@/components/echart/IPG/chart5";
+// import chart5 from "@/components/echart/IPG/chart5";
 import chart2 from "@/components/echart/IPG/chart2";
 // import chart3 from "@/components/echart/IPG/chart3";
 import axios from 'axios'
 import moment from 'moment'
-import roadmap from '@/assets/gdmap.json'
+import roadmap from '@/assets/camera.json'
 export default {
   data() {
     return {
@@ -176,20 +138,54 @@ export default {
       },
       avg_occupancy: [],
       xtime: [],
-      chart4Data: [],
+      chart4Data: [
+
+      ],
       pieData: [],
-      blockData: [],
+      blockData: [1, 2, 3, 4, 5, 6, 7],
       hourData: [],
       markers: [],
       markersbackup: [],
       showbottom: false,
-      clickItem: {}
+      clickItem: {},
+      fakeconfig1:
+      {
+        radius: '40%',
+        activeRadius: '45%',
+        data: [
+          {
+            name: '中心路口',
+            value: 55
+          },
+          {
+            name: '旁支路口',
+            value: 120
+          },
+          {
+            name: '非路口',
+            value: 78
+          },
+          {
+            name: '交叉路口',
+            value: 66
+          },
+          {
+            name: '天桥',
+            value: 80
+          }
+        ],
+        digitalFlopStyle: {
+          fontSize: 20
+        },
+        showOriginValue: true
+      }
+
     };
   },
   components: {
     chart1: chart1,
     chart2: chart2,
-    chart5: chart5,
+    // chart5: chart5,
     // chart3: chart3,
   },
   mounted() {
@@ -200,7 +196,7 @@ export default {
     this.rollup();
   },
   computed: {
-    hasClick: function() {
+    hasClick: function () {
       return JSON.stringify(this.clickItem) !== '{}'
     }
   },
@@ -241,25 +237,28 @@ export default {
     rowClick(row) {
       this.markers = this.markersbackup
       this.markers = this.markers.filter((item) => item.content === (row.road_name + '-' + row.direct))
-      let road = roadmap.filter((item) => item.road === row.road_name && item.direct === row.direct )[0]
-      this.clickItem = { ...this.markers[0], row ,roadinfo: road}
-      console.log(this.blockData[this.clickItem.roadinfo.index])
-      // for (let item of this.markers) {
-      //   if (item.content === (row.road_name+'-'+row.direct)) {
-      //     item.animation = 'AMAP_ANIMATION_BOUNCE'
-      //   }
-      // }
-      // this.markers = JSON.parse(JSON.stringify(this.markers))
+      let road = roadmap.filter((item) => item.road === row.road_name && item.direct === row.direct)[0]
+      this.clickItem = { ...this.markers[0], row, roadinfo: road }
     },
     parseRoadpMap(roadmap) {
+      // for (let item of roadmap) {
+      //   axios({
+      //     url: `https://restapi.amap.com/v3/assistant/coordinate/convert?locations=${item.lon},${item.lat}&coordsys=baidu&output=json&key=6ce7f930d423dc7d3c8dce26d5c0cc6c`
+      //   }).then((res) => {
+      //     item.lon = res.data.locations.split(',')[0]
+      //     item.lat = res.data.locations.split(',')[1]
+      //     this.roadmap.push(item)
+      //   })
+      // }
       for (let item of roadmap) {
         let tmp = {
-          position: [item.longitude, item.latitude],
-          content: `${item.road}-${item.direct}`
+          position: [item.lon, item.lat],
+          content: `${item.id}`
         }
         this.markers.push(tmp)
         this.markersbackup.push(JSON.parse(JSON.stringify(tmp)))
       }
+      console.log(this.markers)
     }
     ,
     async getChart1(utcTimeBegin, utcTimeEnd) {
@@ -268,7 +267,7 @@ export default {
         url: 'http://10.112.172.14:7071/kylin/api/query',
         type: 'json',
         method: 'post',
-        data: { "sql": "select * from camera_data;", "project":"camera_show_statistic" },
+        data: { "sql":"select * from taxi_data where taxi_road!=-1;", "project":"taxi_show_statistic" },
         auth: {
           username: 'ADMIN',
           password: 'KYLIN'
@@ -345,7 +344,7 @@ export default {
 .amap-wrapper {
   /* border: 3px solid rgb(56,213,187); */
   width: 100%;
-  height: 650px;
+  height: 720px;
 }
 .dv-border-box-12 {
   padding: 6px;
