@@ -8,13 +8,15 @@
 import Chart from './chart.vue'
 export default {
   props: {
-    block_data: Array
+    block_data: Array,
+    xtime: Array,
+    clickItem: Object
   },
   data() {
     return {
       cdata: {
-        block_data: this.block_data,
-        category: ['Mon', 'Tue', 'Wen', 'Thr', 'Fri', 'Sat', 'Sun']
+        block_data:  this.block_data,
+        category: this.xtime
       }
     };
   },
@@ -23,6 +25,7 @@ export default {
   },
   mounted() {
     // this.setData();
+    console.log(this.block_data)
   },
   methods: {
     // 根据自己的业务情况修改

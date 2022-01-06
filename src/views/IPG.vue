@@ -20,17 +20,17 @@
             <div class="titleright">
               <h1>南山区平均占用率</h1>
             </div>
-            <chart1 :avg_occupancy="avg_occupancy"></chart1>
+            <chart1 :key="avg_occupancy.length" :avg_occupancy="avg_occupancy" :xtime="xtime"></chart1>
           </dv-border-box-12>
           <dv-border-box-12>
             <div class="titleright">
-              <h1>区块占用率</h1>
+              <h1>{{hasClick ? clickItem.content : '区块占用率'}}</h1>
             </div>
-            <chart2 :block_data="blockData[0]"></chart2>
+            <chart2 :key="hasClick ? clickItem.roadinfo.index : blockData[0].length" :block_data="hasClick ? blockData[clickItem.roadinfo.index] : blockData[0]"  :xtime="xtime" ></chart2>
           </dv-border-box-12>
-          <dv-border-box-12>
+          <!-- <dv-border-box-12>
             <chart3></chart3>
-          </dv-border-box-12>
+          </dv-border-box-12> -->
         </el-col>
         <el-col :span="10">
           <el-row :gutter="20">
@@ -64,13 +64,30 @@
               <div>
                 <h2 style="color:#fff">占用车位数</h2>
               </div>
-              <dv-digital-flop :config="configNowPark" style="width:100px;height:50px;" />
+              <dv-digital-flop :key="configNowPark.number[0]" :config="configNowPark" style="width:100px;height:50px;" />
             </el-col>
           </el-row>
           <el-row :gutter="20">
+            <el-card class="box-card" v-if="JSON.stringify(this.clickItem) !== '{}'">
+              <div slot="header" class="clearfix titlecard">
+                <h1>{{this.clickItem.content}}</h1>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="reverse">取消</el-button>
+              </div>
+              <div class="text item">
+                {{`占用比 ${this.clickItem.row.ratio}`}}
+              </div>
+              <div class="text item">
+                {{`占用率 ${this.clickItem.row.occupancy_rate}`}}
+              </div>
+            </el-card>
             <div class="amap-wrapper">
-              <el-amap class="amap-box" :vid="'amap-vue'" :mapStyle="'amap://styles/darkblue'" :zoom="16" :zooms="[3,20]" :center="[113.935197,22.51659]"></el-amap>
+              <el-amap class="amap-box" :vid="'amap-vue'" :mapStyle="'amap://styles/darkblue'" :zoom="16" :zooms="[3,20]" :center="[113.935197,22.51659]">
+                <el-amap-marker v-for="(marker,index) in markers" :key="index" :position="marker.position" clickable @click="handleClick(marker)" :title="marker.content" :animation="marker.animation || ''"></el-amap-marker>
+                <!-- <el-amap-marker :position="marker"></el-amap-marker> -->
+                <!-- animation="AMAP_ANIMATION_BOUNCE" -->
+              </el-amap>
             </div>
+
           </el-row>
         </el-col>
         <el-col :span="7">
@@ -78,7 +95,7 @@
             <div class="titleright">
               <h1>实时流量预测排行</h1>
             </div>
-            <el-table :data="chart4Data" style="width: 100%" stripe height="400">
+            <el-table  :data="chart4Data" style="width: 100%" stripe height="400" @row-click="rowClick">
               <el-table-column prop="road_name" label="道路" width="180">
               </el-table-column>
               <el-table-column prop="direct" label="方向" width="60">
@@ -93,7 +110,7 @@
             <div class="titleright">
               <h1>总体使用情况</h1>
             </div>
-            <chart5 :pieData="pieData"></chart5>
+            <chart5 :pieData="pieData" :key="xtime.length"></chart5>
           </dv-border-box-12>
         </el-col>
       </el-row>
@@ -108,10 +125,12 @@ import chart5 from "@/components/echart/IPG/chart5";
 import chart2 from "@/components/echart/IPG/chart2";
 // import chart3 from "@/components/echart/IPG/chart3";
 import axios from 'axios'
-import roadmap from '@/assets/roadmap.json'
+import moment from 'moment'
+import roadmap from '@/assets/gdmap.json'
 export default {
   data() {
     return {
+      map: null,
       res: {
         "origin_occupancy": [],
         "block_occupancy": [],
@@ -155,11 +174,16 @@ export default {
         number: [],
         content: '{nt}'
       },
-      avg_occupancy: [20, 30, 40, 20, 40, 30],
+      avg_occupancy: [],
+      xtime: [],
       chart4Data: [],
       pieData: [],
       blockData: [],
-      hourData: []
+      hourData: [],
+      markers: [],
+      markersbackup: [],
+      showbottom: false,
+      clickItem: {}
     };
   },
   components: {
@@ -170,31 +194,81 @@ export default {
   },
   mounted() {
     this.cancelLoading();
-    this.getChart1();
-    this.initBlockData()
+    // this.getChart1();
+    this.initBlockData();
+    this.parseRoadpMap(roadmap);
+    this.rollup();
   },
   computed: {
+    hasClick: function() {
+      return JSON.stringify(this.clickItem) !== '{}'
+    }
   },
   methods: {
+    rollup() {
+      let dateNow = new Date()
+      dateNow = new Date(dateNow.getTime() - 1000 * 60 * 15 * 1)
+      let datePre = new Date(dateNow.getTime() + 1000 * 60)
+      let utcTimeBegin = moment(dateNow).utc().format('YYYY-MM-DD HH:mm');
+      let utcTimeEnd = moment(datePre).utc().format('YYYY-MM-DD HH:mm');
+      this.getChart1(utcTimeBegin, utcTimeEnd)
+      setInterval(() => {
+        let dateNow = new Date()
+        dateNow = new Date(dateNow.getTime() - 1000 * 60 * 15 * 1)
+        let datePre = new Date(dateNow.getTime() + 1000 * 60)
+        let utcTimeBegin = moment(dateNow).utc().format('YYYY-MM-DD HH:mm');
+        let utcTimeEnd = moment(datePre).utc().format('YYYY-MM-DD HH:mm');
+        this.getChart1(utcTimeBegin, utcTimeEnd)
+      }, 1000 * 60);
+    },
     cancelLoading() {
       setTimeout(() => {
         this.loading = false;
       }, 500);
     },
     submitTime() {
-      console.log(this.datetime)
       this.$message({
         message: "提交啦",
         type: "success",
         duration: 2000,
       });
+      // this.getChart1()
     },
-    async getChart1() {
+    reverse() {
+      this.markers = this.markersbackup
+      this.clickItem = {}
+    },
+    rowClick(row) {
+      this.markers = this.markersbackup
+      this.markers = this.markers.filter((item) => item.content === (row.road_name + '-' + row.direct))
+      let road = roadmap.filter((item) => item.road === row.road_name && item.direct === row.direct )[0]
+      this.clickItem = { ...this.markers[0], row ,roadinfo: road}
+      console.log(this.blockData[this.clickItem.roadinfo.index])
+      // for (let item of this.markers) {
+      //   if (item.content === (row.road_name+'-'+row.direct)) {
+      //     item.animation = 'AMAP_ANIMATION_BOUNCE'
+      //   }
+      // }
+      // this.markers = JSON.parse(JSON.stringify(this.markers))
+    },
+    parseRoadpMap(roadmap) {
+      for (let item of roadmap) {
+        let tmp = {
+          position: [item.longitude, item.latitude],
+          content: `${item.road}-${item.direct}`
+        }
+        this.markers.push(tmp)
+        this.markersbackup.push(JSON.parse(JSON.stringify(tmp)))
+      }
+    }
+    ,
+    async getChart1(utcTimeBegin, utcTimeEnd) {
+      console.log(utcTimeBegin, utcTimeEnd)
       let res = await axios({
         url: 'http://10.112.172.14:7071/kylin/api/query',
         type: 'json',
         method: 'post',
-        data: { "sql": "select * from park_show_data;", "project": "park_show_statistic" },
+        data: { "sql": `select * from park_show_data where park_timestamp < '${utcTimeEnd}' and park_timestamp > '${utcTimeBegin}';`, "project": "park_show_statistic" },
         auth: {
           username: 'ADMIN',
           password: 'KYLIN'
@@ -217,17 +291,20 @@ export default {
         this.blockData[item[0]].push(item[2])
       }
       newres.avg_occupancy /= 76
-      console.log(newres)
-      this.parseRes(newres)
+      if (newres.timestamp != this.xtime[this.xtime.length-1]) {
+        this.chart4Data = []
+        this.parseRes(newres)
+        console.log(newres)
+      }
     },
     initBlockData() {
-      for (let i = 0; i < 76; i+=1) {
+      for (let i = 0; i < 76; i += 1) {
         let tmp = []
         this.blockData.push(tmp)
       }
-      console.log(this.blockData)
     },
     parseRes(newres) {
+      this.xtime = [...this.xtime, newres.timestamp]
       this.avg_occupancy = [...this.avg_occupancy, parseInt(newres.avg_occupancy * 100)]
       let nowocc = newres.origin_occupancy
       let nowoccrate = newres.block_occupancy
@@ -249,7 +326,7 @@ export default {
         { value: saturated, name: '饱和' },
         { value: balance, name: '平衡' }
       ]
-      console.log(this.pieData)
+      // console.log(this.pieData)
       this.configNowPark.number = [newres.sum]
       for (let i in nowocc) {
         let tmpdata = {
@@ -260,8 +337,15 @@ export default {
         }
         this.chart4Data.push(tmpdata)
       }
+    },
+    handleClick(marker) {
+      this.$message({
+        message: marker.content,
+        type: "success",
+        duration: 2000,
+      });
     }
-  },
+  }
 };
 </script>
 
@@ -299,5 +383,30 @@ export default {
 }
 .host-body {
   margin: 20px;
+}
+.text {
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+
+.box-card {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+.titlecard {
+  height: 30px;
 }
 </style>

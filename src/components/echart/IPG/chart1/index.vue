@@ -8,13 +8,14 @@
 import Chart from './chart.vue'
 export default {
   props: {
-    avg_occupancy: Array
+    avg_occupancy: Array,
+    xtime: Array
   },
   data () {
     return {
       cdata: {
         rateData: this.avg_occupancy,
-        category: ['Mon', 'Tue','Wen' ,'Thr' ,'Fri','Sat','Sun']
+        category: this.xtime
       }
     };
   },
