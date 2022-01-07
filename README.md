@@ -31,7 +31,7 @@ yarn or npm i
 ```
 
 ```
-yarn dev or npm run dev
+yarn serve or npm run serve
 ```
 
 ### 文件缩写 :floppy_disk:
