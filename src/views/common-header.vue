@@ -60,10 +60,10 @@
                       </div>
                     </router-link>
                   </el-dropdown-item>
-                  <el-dropdown-item command="精准感知">
+                  <el-dropdown-item command="路口流量感知">
                     <router-link to="/TCP/PP">
                       <div>
-                        <span class="pulldown-button">精准感知</span>
+                        <span class="pulldown-button">路口流量感知</span>
                       </div>
                     </router-link>
                   </el-dropdown-item>

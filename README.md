@@ -39,7 +39,7 @@ yarn serve or npm run serve
 | :-----------------: | :-------------------------------------------------------------------: |
 | TCP          | Traffic Condition Perception 交通状况感知 |
 | TCP/RTCA | Real-time road condition awareness 实时路况感知 |
-| TCP/PP | Percision perception 精准感知 |
+| TCP/PP | Percision perception 路口流量感知 |
 | TCP/CTSA | Congestion Time And Space Analysis 拥堵时空分析 |
 | TRF           | Traffic Real-time Forecasts 交通实时预测 |
 | TRF/RF | Road forecast 路况预测 |
