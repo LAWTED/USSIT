@@ -176,7 +176,7 @@ export default {
         i++
         this.xtime.push(i)
         this.getChart1(res)
-      }, 10000);
+      }, 20000);
     },
     submitTime() {
       this.$message({
@@ -237,12 +237,13 @@ export default {
       let status2 = 0; //缓行
       let status3 = 0; //拥堵
       let status4 = 0; //严重拥堵
+      let chart4Data = []
       for (let i in newres) {
         let tmpdata = {
           'road_name': i,
           'occupancy': newres[i]
         }
-        this.chart4Data.push(tmpdata)
+        chart4Data.push(tmpdata)
         let item = parseFloat(newres[i])
         if (item < 10) {
           status1 += 1
@@ -254,6 +255,7 @@ export default {
           status4 += 1
         }
       }
+      this.chart4Data = chart4Data
       this.pieData = [
         { value: status1, name: '畅通' },
         { value: status2, name: '缓行' },

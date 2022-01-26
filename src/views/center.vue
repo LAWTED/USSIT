@@ -131,7 +131,7 @@ export default {
     // centerChart2
   },
   mounted() {
-    this.getData()
+    // this.getData()
   },
   methods: {
     getData() {
@@ -148,7 +148,7 @@ export default {
           item.number.number = tmp;
         }
       })
-      
+
     }
   }
 };
