@@ -18,15 +18,20 @@
           </div>
           <dv-border-box-12>
             <div class="titleright">
-              <h1>路况占用率</h1>
+              <h1>总体使用情况</h1>
             </div>
-            <chart1 :key="avg_occupancy.length" :avg_occupancy="avg_occupancy" :xtime="xtime"></chart1>
+            <chart5 :pieData="pieData" :key="xtime.length"></chart5>
           </dv-border-box-12>
           <dv-border-box-12>
             <div class="titleright">
-              <h1>{{hasClick ? `${clickItem.content}卡口` : '卡口占用率'}}</h1>
+              <h1>实时公交流量感知排行</h1>
             </div>
-            <chart2 :key="hasClick ? clickItem.roadinfo.road_name : blockData[0].length" :block_data="hasClick ? blockData[clickItem.roadinfo.road_name] : blockData[1]" :xtime="xtime"></chart2>
+            <el-table :data="chart4Data" style="width: 100%" stripe height="400" @row-click="rowClick">
+              <el-table-column prop="road_name" label="路口" width="180">
+              </el-table-column>
+              <el-table-column prop="occupancy" label="车流量" sortable>
+              </el-table-column>
+            </el-table>
           </dv-border-box-12>
         </el-col>
         <el-col :span="10">
@@ -39,15 +44,10 @@
               <div class="text item">
                 {{`车流量 ${this.clickItem.row.occupancy}`}}
               </div>
-              <!-- <div class="text item">
-                {{`占用率 ${this.clickItem.row.occupancy_rate}`}}
-              </div> -->
             </el-card>
             <div class="amap-wrapper">
               <el-amap class="amap-box" :vid="'amap-vue'" :mapStyle="'amap://styles/darkblue'" :zoom="16" :zooms="[3,20]" :center="[117.11399303212,36.17872808269]">
                 <el-amap-marker v-for="marker of markers" :key="marker.length" :position="marker.position" clickable @click="handleClick(marker)" :title="marker.content" :animation="marker.animation || ''"></el-amap-marker>
-                <!-- <el-amap-marker :position="marker"></el-amap-marker> -->
-                <!-- animation="AMAP_ANIMATION_BOUNCE" -->
               </el-amap>
             </div>
 
@@ -56,20 +56,15 @@
         <el-col :span="7">
           <dv-border-box-12>
             <div class="titleright">
-              <h1>实时流量预测排行</h1>
+              <h1>平均过车比率</h1>
             </div>
-            <el-table :data="chart4Data" style="width: 100%" stripe height="400" @row-click="rowClick">
-              <el-table-column prop="road_name" label="路口" width="180">
-              </el-table-column>
-              <el-table-column prop="occupancy" label="车流量" sortable>
-              </el-table-column>
-            </el-table>
+            <chart1 :key="avg_occupancy.length" :avg_occupancy="avg_occupancy" :xtime="xtime"></chart1>
           </dv-border-box-12>
           <dv-border-box-12>
             <div class="titleright">
-              <h1>总体使用情况</h1>
+              <h1>{{hasClick ? `${clickItem.content}卡口` : '卡口实时过车数'}}</h1>
             </div>
-            <chart5 :pieData="pieData" :key="xtime.length"></chart5>
+            <chart2 :key="hasClick ? clickItem.roadinfo.road_name : blockData[0].length" :block_data="hasClick ? blockData[clickItem.roadinfo.road_name] : blockData[1]" :xtime="xtime"></chart2>
           </dv-border-box-12>
         </el-col>
       </el-row>
@@ -180,7 +175,7 @@ export default {
     },
     submitTime() {
       this.$message({
-        message: "提交啦",
+        message: "提交成功！",
         type: "success",
         duration: 2000,
       });
@@ -233,10 +228,10 @@ export default {
       }
     },
     parseRes(newres) {
-      let status1 = 0; //畅通
-      let status2 = 0; //缓行
-      let status3 = 0; //拥堵
-      let status4 = 0; //严重拥堵
+      let status1 = 0; //无过车量
+      let status2 = 0; //过车量一般
+      let status3 = 0; //过车量较大
+      let status4 = 0; //过车量大
       let chart4Data = []
       for (let i in newres) {
         let tmpdata = {
@@ -245,22 +240,22 @@ export default {
         }
         chart4Data.push(tmpdata)
         let item = parseFloat(newres[i])
-        if (item < 10) {
+        if (item == 0) {
           status1 += 1
-        } else if (item < 20) {
+        } else if (item < 10) {
           status2 += 1
-        } else if (item < 30) {
+        } else if (item < 20) {
           status3 += 1
-        } else {
+        } else if (item < 30) {
           status4 += 1
         }
       }
       this.chart4Data = chart4Data
       this.pieData = [
-        { value: status1, name: '畅通' },
-        { value: status2, name: '缓行' },
-        { value: status3, name: '拥堵' },
-        { value: status4, name: '严重拥堵' },
+        { value: status1, name: '无过车量' },
+        { value: status2, name: '过车量一般' },
+        { value: status3, name: '过车量较大' },
+        { value: status4, name: '过车量大' },
       ]
 
     },
