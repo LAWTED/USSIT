@@ -82,7 +82,8 @@ import moment from 'moment'
 import roadmap from '@/assets/camera.json'
 import camera from '@/assets/pp.json'
 import { changeDefaultConfig } from '@jiaminghi/charts'
-changeDefaultConfig('color', ['#37a2da', '#ffdb5c', '#9fe6b8', '#fb7293'])
+
+
 export default {
   data() {
     return {
@@ -154,6 +155,8 @@ export default {
     this.initBlockData();
     this.rollup();
     this.parseRoadpMap(roadmap);
+    changeDefaultConfig('color', ['#000', '#ffdb5c', '#9fe6b8', '#fb7293'])
+    // console.log(changeDefaultConfig)
   },
   computed: {
     hasClick: function () {
@@ -244,7 +247,7 @@ export default {
           'occupancy': newres[i]
         }
         chart4Data.push(tmpdata)
-        console.log(this.markers)
+        // console.log(this.markers)
         let item = parseFloat(newres[i])
         if (item == 0) {
           status1 += 1
