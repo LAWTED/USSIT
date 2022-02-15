@@ -47,7 +47,7 @@
             </el-card>
             <div class="amap-wrapper">
               <el-amap class="amap-box" :vid="'amap-vue'" :mapStyle="'amap://styles/darkblue'" :zoom="16" :zooms="[3,20]" :center="[117.11399303212,36.17872808269]">
-                <el-amap-marker v-for="marker of markers" :key="marker.length" :position="marker.position" clickable @click="handleClick(marker)" :title="marker.content" :animation="marker.animation || ''"></el-amap-marker>
+                <el-amap-marker v-for="marker of markers" :key="marker.length" :position="marker.position" clickable :title="marker.content" :animation="marker.animation || ''" :content="marker.svgColor"></el-amap-marker>
               </el-amap>
             </div>
 
@@ -78,9 +78,11 @@ import chart1 from "@/components/echart/RTCA/chart1";
 import chart5 from "@/components/echart/RTCA/chart5";
 import chart2 from "@/components/echart/RTCA/chart2";
 // import chart3 from "@/components/echart/IPG/chart3";
-// import moment from 'moment'
+import moment from 'moment'
 import roadmap from '@/assets/camera.json'
 import camera from '@/assets/pp.json'
+import { changeDefaultConfig } from '@jiaminghi/charts'
+changeDefaultConfig('color', ['#37a2da', '#ffdb5c', '#9fe6b8', '#fb7293'])
 export default {
   data() {
     return {
@@ -169,7 +171,9 @@ export default {
       setInterval(() => {
         let res = camera.slice(i - 1, i)
         i++
-        this.xtime.push(i)
+        // 2021年5月1日零点开始
+        let date = 1588262400 + i * 10 * 60
+        this.xtime.push(moment.unix(date).format('YYYY-MM-DD HH:mm'))
         this.getChart1(res)
       }, 20000);
     },
@@ -204,7 +208,8 @@ export default {
       for (let item of roadmap) {
         let tmp = {
           position: [item.lon, item.lat],
-          content: `${item.id}`
+          content: `${item.id}`,
+          svgColor: "<svg height=10 width=10><circle cx=5 cy=5 r=4  fill=#37a2da /></svg>"
         }
         this.markers.push(tmp)
         this.markersbackup.push(JSON.parse(JSON.stringify(tmp)))
@@ -239,15 +244,20 @@ export default {
           'occupancy': newres[i]
         }
         chart4Data.push(tmpdata)
+        console.log(this.markers)
         let item = parseFloat(newres[i])
         if (item == 0) {
           status1 += 1
+          this.markers.find(x => x.content == i).svgColor = "<svg height=10 width=10><circle cx=5 cy=5 r=4  fill=#37a2da /></svg>"
         } else if (item < 10) {
           status2 += 1
+          this.markers.find(x => x.content == i).svgColor = "<svg height=10 width=10><circle cx=5 cy=5 r=4  fill=#ffdb5c /></svg>"
         } else if (item < 20) {
           status3 += 1
+          this.markers.find(x => x.content == i).svgColor = "<svg height=10 width=10><circle cx=5 cy=5 r=4  fill=#9fe6b8 /></svg>"
         } else if (item < 30) {
           status4 += 1
+          this.markers.find(x => x.content == i).svgColor = "<svg height=10 width=10><circle cx=5 cy=5 r=4  fill=#fb7293 /></svg>"
         }
       }
       this.chart4Data = chart4Data
@@ -260,12 +270,8 @@ export default {
 
     },
     handleClick(marker) {
-      // console.log(marker)
-      this.$message({
-        message: marker.content,
-        type: "success",
-        duration: 2000,
-      });
+      console.log(marker)
+
     }
   }
 };

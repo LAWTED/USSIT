@@ -45,6 +45,7 @@ export default {
             }
           },
           xAxis: {
+            name: '时间',
             data: newData.category,
             axisLine: {
               lineStyle: {
@@ -57,6 +58,7 @@ export default {
           },
           yAxis: [
             {
+              name: '过车率',
               splitLine: { show: false },
               axisLine: {
                 lineStyle: {
@@ -71,7 +73,7 @@ export default {
           ],
           series: [
             {
-              name: "平均占用率",
+              name: "平均过车率",
               type: "line",
               smooth: true,
               showAllSymbol: true,
